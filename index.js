@@ -1,14 +1,26 @@
-function Muhammad(){
-   let std_Total_Marks = prompt("Enter your total marks");
-let std_Obtained_Marks = prompt("Enter Your Otained Marks");
- let res = (std_Obtained_Marks / std_Total_Marks) * 100;
-alert("You Have gotted " + res + "%")
-document.write( "You Have gotted " + res + "%")
-} 
-Muhammad();
-Muhammad();
-Muhammad();
-Muhammad();
-Muhammad();
-Muhammad();
-Muhammad();
+const shortBtn = document.getElementById('short-btn');
+const reloadBtn = document.getElementById('reload-btn');
+
+shortBtn.addEventListener('click' , shortenUrl);
+
+
+function shortenUrl(){
+    var originalUrl = document.getElementById("originalUrl").value;
+    var apiUrl = "https://tinyurl.com/api-creat.php?url=" + encodeURIComponent('originalUrl');
+    shortenedUrlTextarea = document.getElementById
+        ("shortenedUrl");
+
+
+    fetch(apiUrl).then(Response => Response.text()).then
+    (data => {
+        shortenedUrlTextarea.value = data;
+    }).catch(error =>{
+        shortenedUrlTextarea.value = "Error : Unable to shorten URL!";
+    });
+}
+
+
+reloadBtn.addEventListener('click', ()=>{
+    location.reload();
+
+});
